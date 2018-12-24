@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExistingSpreadsheets"></activity>
+        <activity android:name=".ExistingSpreadsheets" />
+        <activity android:name=".CreateNew" />
+        <activity android:name=".EditSpreadsheet"></activity>
     </application>
 
 </manifest>
