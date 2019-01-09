@@ -1,6 +1,7 @@
 package com.example.chenp.barco;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,8 @@ public class EditSpreadsheet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code for opening camera to scan student card barcode; returns a student number
+                Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+                startActivity(startIntent);
             }
         });
         Button checkStudentButton = (Button)findViewById(R.id.checkStudentButton);
@@ -25,6 +28,8 @@ public class EditSpreadsheet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code for opening camera to scan student card barcode; returns a student number
+                Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+                startActivity(startIntent);
             }
         });
         Button displayStudentsButton = (Button)findViewById(R.id.displayStudentsButton);
@@ -34,6 +39,7 @@ public class EditSpreadsheet extends AppCompatActivity {
                 // Code for opening spreadsheet to display students that are registered
             }
         });
+
         Button backEditSpreadsheetButton = (Button)findViewById(R.id.backEditSpreadsheetButton);
         backEditSpreadsheetButton.setOnClickListener(new View.OnClickListener() {
             @Override
