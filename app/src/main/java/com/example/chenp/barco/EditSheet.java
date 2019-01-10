@@ -1,18 +1,17 @@
 package com.example.chenp.barco;
 
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class EditSpreadsheet extends AppCompatActivity {
+public class EditSheet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_spreadsheet);
+        setContentView(R.layout.activity_edit_sheet);
 
         Button addStudentsButton = (Button)findViewById(R.id.addStudentsButton);
         addStudentsButton.setOnClickListener(new View.OnClickListener() {

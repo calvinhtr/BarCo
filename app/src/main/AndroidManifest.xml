@@ -2,14 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chenp.barco">
     //Gives permission for the use of the camera
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     //Declares features of the camera
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     android:required="true"/>
     //stores camera photos
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -25,12 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExistingSpreadsheets" />
+        <activity android:name=".ExistingSheets" />
         <activity android:name=".CreateNew" />
-        <activity android:name=".EditSpreadsheet" />
-        <activity android:name=".BarCodeScanner"></activity>
+        <activity android:name=".EditSheet" />
+        <activity android:name=".BarCodeScanner" />
         // random tutorial
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity android:name=".AddItemToSheet"></activity>
     </application>
 
 </manifest>

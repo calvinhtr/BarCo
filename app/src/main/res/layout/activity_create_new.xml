@@ -7,46 +7,47 @@
     tools:context=".CreateNew">
 
     <TextView
-        android:id="@+id/spreadsheetNameTextView"
+        android:id="@+id/sheetNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        android:text="Spreadsheet Name"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:text="Sheet Name"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/sheetNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Enter spreadsheet name"
+        android:hint="Enter sheet name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spreadsheetNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/sheetNameTextView" />
 
     <Button
-        android:id="@+id/createSpreadsheetButton"
+        android:id="@+id/createSheetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Create Spreadsheet"
+        android:layout_marginBottom="6dp"
+        android:text="Create Sheet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/sheetNameEditText" />
 
     <Button
         android:id="@+id/backCreateNewButton"
