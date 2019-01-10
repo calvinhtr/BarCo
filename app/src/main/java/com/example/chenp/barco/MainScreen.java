@@ -7,16 +7,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainScreen extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Button existingSpreadsheetButton = (Button)findViewById(R.id.existingSpreadsheetButton);
-        existingSpreadsheetButton.setOnClickListener(new View.OnClickListener() {
+        Button existingSheetButton = (Button)findViewById(R.id.existingSheetButton);
+        existingSheetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),ExistingSpreadsheets.class);
+                Intent startIntent = new Intent(getApplicationContext(),ExistingSheets.class);
                 startActivity(startIntent);
             }
         });
@@ -28,7 +29,15 @@ public class MainScreen extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
-
+        // Take this button code out after moving add item to after camera detects student card
+        Button testButton = (Button)findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(),AddItemToSheet.class);
+                startActivity(startIntent);
+            }
+        });
 
     }
 }
