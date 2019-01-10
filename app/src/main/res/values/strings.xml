@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BarCo</string>
+    <string name="textView">TextView</string>
+    <string name="existing_spreadsheets">Existing Spreadsheet</string>
+    <string name="create_new">Create New</string>
+    <string name="spreadsheet_name">Spreadsheet Name</string>
+    <string name="enter_spreadsheet_name">Enter spreadsheet name</string>
+    <string name="create_spreadsheet">Create Spreadsheet</string>
+    <string name="add_students">Add Students</string>
+    <string name="check_student">Check Student</string>
+    <string name="display_students">Display Students</string>
+    <stringg name="back">Back</stringg>
 </resources>
