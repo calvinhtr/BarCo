@@ -13,7 +13,7 @@ public class CreateNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new);
 
-        Button createSheetButton = (Button)findViewById(R.id.createSheetButton);
+        Button createSheetButton = (Button)findViewById(R.id.createSpreadsheetButton);
         createSheetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

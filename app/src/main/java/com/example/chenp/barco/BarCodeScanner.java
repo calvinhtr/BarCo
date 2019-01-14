@@ -1,4 +1,5 @@
 package com.example.chenp.barco;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -10,24 +11,29 @@ import info.androidhive.barcode.BarcodeReader;
 
 public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
     private BarcodeReader barcodeReader;
-
+    String myBarcode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_code_scanner);
         //Create a new
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_fragment);
+
     }
 
 
     @Override
     public void onScanned(Barcode barcode) {
+
         //Create new Activity with textbox and allows you to change and post it to the google sheets
-        int studentNum=barcode.valueFormat;
-         TextView textView = (TextView) findViewById(R.id.textView);
-         textView.setText(barcode.displayValue);
-        // play beep sound
-        //barcodeReader.playBeep();
+        myBarcode=barcode.rawValue;
+        if(myBarcode!=null) {
+            Intent startIntent = new Intent(getApplicationContext(), AddItemToSheet.class);
+            //Intent that passes barcode to new class
+            startIntent.putExtra("password", myBarcode);
+            startActivity(startIntent);
+            finish();
+        }
     }
 
     @Override
