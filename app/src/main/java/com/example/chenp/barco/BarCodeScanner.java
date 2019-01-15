@@ -16,9 +16,9 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_code_scanner);
-        //Create a new
+        //Create a new barcodeReader
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_fragment);
-
+        
     }
 
 
@@ -27,6 +27,7 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
 
         //Create new Activity with textbox and allows you to change and post it to the google sheets
         myBarcode=barcode.rawValue;
+        //if Barcode value is not 0 open the new activity with scanned barcode value
         if(myBarcode!=null) {
             Intent startIntent = new Intent(getApplicationContext(), AddItemToSheet.class);
             //Intent that passes barcode to new class
