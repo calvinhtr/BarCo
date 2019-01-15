@@ -13,11 +13,11 @@ public class CreateNew extends AppCompatActivity {
 String spreadSheetNames[]=new String[10];
 //Counter to keep track of the number of spreadsheets
 int spreadSheetNumber=0;
-
+EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //EditText button
-        final  EditText editText=(EditText)findViewById(R.id.editText);
+
         final Toast toast = Toast.makeText(getApplicationContext(),
                 "Invalid number of spreadsheets",
                 Toast.LENGTH_SHORT);
@@ -27,6 +27,7 @@ int spreadSheetNumber=0;
         createSheetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editText=(EditText)findViewById(R.id.editText);
                 //spreadSheet  names array
                 spreadSheetNames[spreadSheetNumber]=editText.getText().toString();
                 if(spreadSheetNumber>9){
@@ -34,15 +35,10 @@ int spreadSheetNumber=0;
                     spreadSheetNumber--;
                 }
                 spreadSheetNumber++;
-                Bundle b = new Bundle();
-                b.putStringArray("key", new String[]{spreadSheetNames[0],spreadSheetNames[1],
-                        spreadSheetNames[2],spreadSheetNames[3],spreadSheetNames[4],spreadSheetNames[5],
-                        spreadSheetNames[6], spreadSheetNames[7],spreadSheetNames[8],spreadSheetNames[9]});
-                Intent i=new Intent(getApplicationContext(),ExistingSheets.class);
-                i.putExtras(b);
+                // addToSpreadsheets
+                Intent i=new Intent(getApplicationContext(),ExistingSheets.class);;
                 //start the EditSheet Intent
-              //  Intent startIntent = new Intent(getApplicationContext(),EditSheet.class);
-                //startActivity(startIntent);
+                startActivity(i);
             }
         });
 

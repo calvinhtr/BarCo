@@ -9,14 +9,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class ExistingSheets extends AppCompatActivity {
-    Bundle b = this.getIntent().getExtras();
-    String[] array = b.getStringArray("key");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_existing_sheets);
-        /*for(int i=0;i<array.length;i++) {
+        Bundle b = this.getIntent().getExtras();
+        String[] array = b.getStringArray("key");
+        for(int i=0;i<array.length;i++) {
             //Create constraint layout object
             ConstraintLayout myContainer = findViewById(R.id.constraintLayout);
             //Create a constraint layout parameters object
@@ -36,12 +37,12 @@ public class ExistingSheets extends AppCompatActivity {
                     startActivity(startIntent);
         }
         });
-            if(array[i]!=null) {
+            if(array[i]!="0") {
                 btn.setText(array[i]);
             }
             else{
                 myContainer.removeView(btn);
             }
-    }*/
+    }
     }
 }
