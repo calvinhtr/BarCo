@@ -19,28 +19,28 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddItemToSheet extends AppCompatActivity implements View.OnClickListener{
+public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClickListener{
 
     // Create Java variables to store the XML objects.
     EditText studentNumberEditText;
-    Button addStudentButton;
+    Button deleteStudentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
         String stuNum=intent.getExtras().getString("password");
-        setContentView(R.layout.activity_add_item_to_sheet);
+        setContentView(R.layout.activity_delete_item_on_sheet);
 
-        studentNumberEditText = (EditText)findViewById(R.id.studentNumberAddEditText);
+        studentNumberEditText = (EditText)findViewById(R.id.studentNumberDeleteEditText);
         studentNumberEditText.setText(stuNum);
-        addStudentButton = (Button)findViewById(R.id.toAddButton);
+        deleteStudentButton = (Button)findViewById(R.id.toDeleteButton);
         //Add an on click listener to the button
-        addStudentButton.setOnClickListener(this);
+        deleteStudentButton.setOnClickListener(this);
     }
 
-    private void addStudentToSheet(){
-        final ProgressDialog loading = ProgressDialog.show(this, "Adding student", "Please wait");
+    private void deleteStudentFromSheet(){
+        final ProgressDialog loading = ProgressDialog.show(this, "Deleting student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         // Gets the sheet name
         final String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();
@@ -52,7 +52,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(AddItemToSheet.this,response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(DeleteItemOnSheet.this,response,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
                     }
@@ -68,7 +68,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                 Map<String, String> params = new HashMap<>();
 
                 //here we pass params
-                params.put("action","addStudent");
+                params.put("action","deleteStudent");
                 params.put("studentNumber",studentNumber);
                 params.put("sheetName",sheetName);
 
@@ -91,8 +91,8 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
-        if (v == addStudentButton){
-            addStudentToSheet();
+        if (v == deleteStudentButton){
+            deleteStudentFromSheet();
         }
     }
 }

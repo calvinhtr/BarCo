@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddItemToSheet extends AppCompatActivity implements View.OnClickListener{
+public class CheckStudentOnSheet extends AppCompatActivity implements View.OnClickListener{
 
     // Create Java variables to store the XML objects.
     EditText studentNumberEditText;
@@ -30,17 +30,17 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
         String stuNum=intent.getExtras().getString("password");
-        setContentView(R.layout.activity_add_item_to_sheet);
+        setContentView(R.layout.activity_check_student_on_sheet);
 
-        studentNumberEditText = (EditText)findViewById(R.id.studentNumberAddEditText);
+        studentNumberEditText = (EditText)findViewById(R.id.studentNumberToCheckEditText);
         studentNumberEditText.setText(stuNum);
-        addStudentButton = (Button)findViewById(R.id.toAddButton);
+        addStudentButton = (Button)findViewById(R.id.toCheckButton);
         //Add an on click listener to the button
         addStudentButton.setOnClickListener(this);
     }
 
     private void addStudentToSheet(){
-        final ProgressDialog loading = ProgressDialog.show(this, "Adding student", "Please wait");
+        final ProgressDialog loading = ProgressDialog.show(this, "Checking student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         // Gets the sheet name
         final String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();
@@ -52,7 +52,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(AddItemToSheet.this,response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(CheckStudentOnSheet.this,response,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
                     }
@@ -68,7 +68,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                 Map<String, String> params = new HashMap<>();
 
                 //here we pass params
-                params.put("action","addStudent");
+                params.put("action","checkStudent");
                 params.put("studentNumber",studentNumber);
                 params.put("sheetName",sheetName);
 

@@ -29,14 +29,21 @@
         </activity>
         <activity android:name=".ExistingSheets" />
         <activity android:name=".CreateNew" />
-        <activity android:name=".BarCodeScanner"></activity>
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+        <activity android:name=".BarCodeScanner" />
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
         <activity android:name=".EditSheet" />
         // random tutorial
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
-        <activity android:name=".AddItemToSheet"></activity>
+
+        <activity android:name=".AddItemToSheet" />
+        <activity android:name=".DeleteItemOnSheet" />
+        <activity android:name=".CheckStudentOnSheet"></activity>
     </application>
 
 </manifest>
