@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +16,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,12 +30,15 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        String stuNum=intent.getExtras().getString("password");
         setContentView(R.layout.activity_add_item_to_sheet);
 
-        studentNumberEditText = (EditText)findViewById(R.id.studentNumberEditText);
+       studentNumberEditText = (EditText)findViewById(R.id.studentNumberEditText);
+        studentNumberEditText.setText(stuNum);
         addStudentButton = (Button)findViewById(R.id.addStudentButton);
         // Add an on click listener to the button
-        addStudentButton.setOnClickListener(this);
+        //addStudentButton.setOnClickListener(this);
     }
 
     private void addStudentToSheet(){
@@ -44,7 +47,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
 
         // Has URL of web app that has access to the Google Sheets
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbz23ZasmP5RpboMtGCrm5fG47BbXvd_8Laki8O0fOn8iF7WIN0/exec",
-                new Response.Listener<String>() {
+                new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
@@ -54,7 +57,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                         startActivity(intent);
                     }
                 },
-                new Response.ErrorListener() {
+                new com.android.volley.Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                     }
