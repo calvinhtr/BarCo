@@ -38,7 +38,8 @@ public class MainScreen extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),AddItemToSheet.class);
+                Intent startIntent = new Intent(getApplicationContext(),EditSheet.class);
+                startActivity(startIntent);
             }
         });
         String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();

@@ -6,46 +6,58 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class  EditSheet extends AppCompatActivity {
+public class  EditSheet extends AppCompatActivity implements View.OnClickListener {
+
+    Button addStudentsButton;
+    Button deleteStudentsButton;
+    Button displayStudentsButton;
+    Button checkStudentsButton;
+    Button backEditSpreadsheetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_sheet);
 
-        Button addStudentsButton = (Button)findViewById(R.id.addStudentsButton);
-        addStudentsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code for opening camera to scan student card barcode; returns a student number
-                Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
-                startActivity(startIntent);
-            }
-        });
-        Button checkStudentButton = (Button)findViewById(R.id.checkStudentButton);
-        checkStudentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code for opening camera to scan student card barcode; returns a student number
-                Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
-                startActivity(startIntent);
-            }
-        });
-        Button displayStudentsButton = (Button)findViewById(R.id.displayStudentsButton);
-        displayStudentsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Code for opening spreadsheet to display students that are registered
-            }
-        });
+        addStudentsButton = (Button)findViewById(R.id.addStudentsButton);
+        addStudentsButton.setOnClickListener(this);
 
-        Button backEditSpreadsheetButton = (Button)findViewById(R.id.backEditSpreadsheetButton);
-        backEditSpreadsheetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MainScreen.class);
-                startActivity(startIntent);
-            }
-        });
+        checkStudentsButton = (Button)findViewById(R.id.checkStudentButton);
+        checkStudentsButton.setOnClickListener(this);
+
+        deleteStudentsButton = (Button)findViewById(R.id.deleteStudentsButton);
+        deleteStudentsButton.setOnClickListener(this);
+
+        displayStudentsButton = (Button)findViewById(R.id.displayStudentsButton);
+        displayStudentsButton.setOnClickListener(this);
+
+        backEditSpreadsheetButton = (Button)findViewById(R.id.backEditSpreadsheetButton);
+        backEditSpreadsheetButton.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v) {
+        // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
+        if (v == addStudentsButton){
+            Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            ((GlobalVariables) this.getApplication()).setBarcodeNext("addStudents");
+            startActivity(startIntent);
+        }
+        else if (v == checkStudentsButton){
+            Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            ((GlobalVariables) this.getApplication()).setBarcodeNext("checkStudents");
+            startActivity(startIntent);
+        }
+        else if (v== deleteStudentsButton){
+            Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            ((GlobalVariables) this.getApplication()).setBarcodeNext("deleteStudents");
+            startActivity(startIntent);
+        }
+        else if (v== displayStudentsButton){
+
+        }
+        else if (v == backEditSpreadsheetButton){
+            Intent startIntent = new Intent(getApplicationContext(),MainScreen.class);
+            startActivity(startIntent);
+        }
     }
 }

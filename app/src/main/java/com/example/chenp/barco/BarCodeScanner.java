@@ -29,7 +29,17 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
         myBarcode=barcode.rawValue;
         //if Barcode value is not 0 open the new activity with scanned barcode value
         if(myBarcode!=null) {
-            Intent startIntent = new Intent(getApplicationContext(), AddItemToSheet.class);
+            final String destination = ((GlobalVariables) this.getApplication()).getBarcodeNext();
+            Intent startIntent;
+            if (destination == "addStudents"){
+                 startIntent = new Intent(getApplicationContext(), AddItemToSheet.class);
+            }
+            else if (destination == "deleteStudents"){
+                startIntent = new Intent(getApplicationContext(), DeleteItemOnSheet.class);
+            }
+            else {
+                startIntent = new Intent(getApplicationContext(), CheckStudentOnSheet.class);
+            }
             //Intent that passes barcode to new class
             startIntent.putExtra("password", myBarcode);
             startActivity(startIntent);
