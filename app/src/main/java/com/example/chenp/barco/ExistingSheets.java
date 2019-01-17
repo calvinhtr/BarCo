@@ -42,10 +42,10 @@ public class ExistingSheets extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Intent startIntent = new Intent(getApplicationContext(), EditSheet.class);
-
                     startActivity(startIntent);
                 }
-            });myContainer.addView(btn);
+            });
+            myContainer.addView(btn);
                ConstraintSet constraintSet= new ConstraintSet();
                constraintSet.clone(myContainer);
             constraintSet.connect(btn.getId(),constraintSet.TOP,myContainer.getId(),constraintSet.TOP,i * 100  + 8);
