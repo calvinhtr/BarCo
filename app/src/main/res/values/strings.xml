@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BarCo</string>
     <string name="textView">TextView</string>
-    <string name="existing_spreadsheets">Existing Spreadsheet</string>
+    <string name="existing_spreadsheets">Existing Spreadsheets</string>
     <string name="create_new">Create New</string>
     <string name="spreadsheet_name">Spreadsheet Name</string>
     <string name="enter_spreadsheet_name">Enter spreadsheet name</string>
