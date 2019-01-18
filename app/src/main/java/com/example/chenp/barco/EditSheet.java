@@ -1,6 +1,7 @@
 package com.example.chenp.barco;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,28 +42,25 @@ public class  EditSheet extends AppCompatActivity implements View.OnClickListene
         if (v == addStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
             startIntent.putExtra("spreadSheetName", (spreadSheetName));
-            startActivity(startIntent);
             ((GlobalVariables) this.getApplication()).setBarcodeNext("addStudents");
             startActivity(startIntent);
         }
         else if (v == checkStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
-            Intent intent=getIntent();
-            spreadSheetName=intent.getStringExtra("spreadSheetName");
+            startIntent.putExtra("spreadSheetName", (spreadSheetName));
             ((GlobalVariables) this.getApplication()).setBarcodeNext("checkStudents");
             startActivity(startIntent);
         }
         else if (v== deleteStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
-            Intent intent=getIntent();
-            spreadSheetName=intent.getStringExtra("spreadSheetName");
+            startIntent.putExtra("spreadSheetName", (spreadSheetName));
             ((GlobalVariables) this.getApplication()).setBarcodeNext("deleteStudents");
-            startIntent.putExtra("spreadsheetName", (spreadSheetName));
-            startActivity(startIntent);
             startActivity(startIntent);
         }
         else if (v== displayStudentsButton){
-
+            Uri uri = Uri.parse("https://docs.google.com/spreadsheets/d/1_2QccSd2XGne3HKNpianwGYZvC6hl9ho4nJhE_kGzp0/edit#gid=0");
+            Intent startIntent = new Intent (Intent.ACTION_VIEW, uri);
+            startActivity(startIntent);
         }
         else if (v == backEditSpreadsheetButton){
             Intent startIntent = new Intent(getApplicationContext(),MainScreen.class);

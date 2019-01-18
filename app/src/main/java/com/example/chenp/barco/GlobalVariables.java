@@ -2,7 +2,7 @@ package com.example.chenp.barco;
 import android.app.Application;
 
 public class GlobalVariables extends Application {
-    private String sheetName = "Event 1";
+    private String sheetName = "";
     String spreadSheetNames[]=new String[100];
     public String getSheetNameGlobal(int id){
         return spreadSheetNames[id];
