@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddItemToSheet extends AppCompatActivity implements View.OnClickListener{
+public class AddItemToSheet extends AppCompatActivity implements View.OnClickListener {
 
     // Create Java variables to store the XML objects.
     EditText studentNumberEditText;
@@ -28,23 +29,26 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent=getIntent();
-        String stuNum=intent.getExtras().getString("password");
+        //Action bar title
+        getSupportActionBar().setTitle("Add Item to Sheet");
+        Intent intent = getIntent();
+        //String that will receive the intent of the studentnumber
+        String stuNum = intent.getExtras().getString("password");
         setContentView(R.layout.activity_add_item_to_sheet);
 
-        studentNumberEditText = (EditText)findViewById(R.id.studentNumberAddEditText);
+        studentNumberEditText = (EditText) findViewById(R.id.studentNumberAddEditText);
         studentNumberEditText.setText(stuNum);
-        addStudentButton = (Button)findViewById(R.id.toAddButton);
+        addStudentButton = (Button) findViewById(R.id.toAddButton);
         //Add an on click listener to the button
         addStudentButton.setOnClickListener(this);
     }
 
-    private void addStudentToSheet(){
+    private void addStudentToSheet() {
         final ProgressDialog loading = ProgressDialog.show(this, "Adding student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         // Gets the sheet name
-        Intent intent=getIntent();
-        final String sheetName =intent.getStringExtra("spreadSheetName");
+        Intent intent = getIntent();
+        final String sheetName = intent.getStringExtra("spreadSheetName");
 
         // Has URL of web app that has access to the Google Sheets
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbz23ZasmP5RpboMtGCrm5fG47BbXvd_8Laki8O0fOn8iF7WIN0/exec",
@@ -53,8 +57,8 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(AddItemToSheet.this,response,Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),MainScreen.class);
+                        Toast.makeText(AddItemToSheet.this, response, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                         startActivity(intent);
                     }
                 },
@@ -69,9 +73,9 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                 Map<String, String> params = new HashMap<>();
 
                 //here we pass params
-                params.put("action","addStudent");
-                params.put("studentNumber",studentNumber);
-                params.put("sheetName",sheetName);
+                params.put("action", "addStudent");
+                params.put("studentNumber", studentNumber);
+                params.put("sheetName", sheetName);
 
                 return params;
             }
@@ -92,7 +96,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
-        if (v == addStudentButton){
+        if (v == addStudentButton) {
             addStudentToSheet();
         }
     }

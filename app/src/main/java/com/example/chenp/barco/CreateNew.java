@@ -20,35 +20,27 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateNew extends AppCompatActivity implements View.OnClickListener{
-
-    //array that will store all the spreadsheet names
-    String spreadSheetNames[]=new String[10];
-    //Counter to keep track of the number of spreadsheets
-    int spreadSheetNumber=0;
+public class CreateNew extends AppCompatActivity implements View.OnClickListener {
     EditText editText;
-    String temp;
     Button createSheetButton;
     Button backCreateNewButton;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-        final Toast toast = Toast.makeText(getApplicationContext(),
-                "Invalid number of spreadsheets",
-                Toast.LENGTH_SHORT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new);
-
-        createSheetButton = (Button)findViewById(R.id.createSpreadsheetButton);
+        getSupportActionBar().setTitle("Create New Spreadsheet");
+        createSheetButton = (Button) findViewById(R.id.createSpreadsheetButton);
         createSheetButton.setOnClickListener(this);
 
-        backCreateNewButton = (Button)findViewById(R.id.backCreateNewButton);
+        backCreateNewButton = (Button) findViewById(R.id.backCreateNewButton);
         backCreateNewButton.setOnClickListener(this);
 
-        editText = (EditText)findViewById(R.id.editText);
+        editText = (EditText) findViewById(R.id.editText);
     }
 
-    public void createSheetOnSpreadsheet(){
+    public void createSheetOnSpreadsheet() {
         final ProgressDialog loading = ProgressDialog.show(this, "Adding spreadsheet", "Please wait");
         final String sheetName = editText.getText().toString().trim();
         // Has URL of web app that has access to the Google Sheets
@@ -58,8 +50,8 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(CreateNew.this,response,Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),MainScreen.class);
+                        Toast.makeText(CreateNew.this, response, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                         startActivity(intent);
                     }
                 },
@@ -74,8 +66,8 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
                 Map<String, String> params = new HashMap<>();
 
                 //here we pass params
-                params.put("action","createNewSheet");
-                params.put("newSheetName",sheetName);
+                params.put("action", "createNewSheet");
+                params.put("newSheetName", sheetName);
 
                 return params;
             }
@@ -94,17 +86,17 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
 
     public void onClick(View v) {
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
-        if (v == createSheetButton){
+        if (v == createSheetButton) {
             createSheetOnSpreadsheet();
             //spreadSheet  names array
             ((GlobalVariables) this.getApplication()).inputInSpreadSheet(editText.getText().toString());
             // addToSpreadsheets
-            Intent i = new Intent(getApplicationContext(),ExistingSheets.class);;
+            Intent i = new Intent(getApplicationContext(), ExistingSheets.class);
+            ;
             //start the EditSheet Intent
             startActivity(i);
-        }
-        else if (v == backCreateNewButton){
-            Intent startIntent = new Intent(getApplicationContext(),MainScreen.class);
+        } else if (v == backCreateNewButton) {
+            Intent startIntent = new Intent(getApplicationContext(), MainScreen.class);
             startActivity(startIntent);
         }
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClickListener{
+public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClickListener {
 
     // Create Java variables to store the XML objects.
     EditText studentNumberEditText;
@@ -28,23 +29,24 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent=getIntent();
-        String stuNum=intent.getExtras().getString("password");
+        Intent intent = getIntent();
+        getSupportActionBar().setTitle("Delete Item on Sheet");
+        String stuNum = intent.getExtras().getString("password");
 
 
         setContentView(R.layout.activity_delete_item_on_sheet);
 
-        studentNumberEditText = (EditText)findViewById(R.id.studentNumberDeleteEditText);
+        studentNumberEditText = (EditText) findViewById(R.id.studentNumberDeleteEditText);
         studentNumberEditText.setText(stuNum);
-        deleteStudentButton = (Button)findViewById(R.id.toDeleteButton);
+        deleteStudentButton = (Button) findViewById(R.id.toDeleteButton);
         //Add an on click listener to the button
         deleteStudentButton.setOnClickListener(this);
     }
 
-    private void deleteStudentFromSheet(){
+    private void deleteStudentFromSheet() {
         final ProgressDialog loading = ProgressDialog.show(this, "Deleting student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
-        Intent secondIntent=getIntent();
+        Intent secondIntent = getIntent();
         // Gets the sheet name
         final String sheetName = secondIntent.getStringExtra("spreadSheetName");
 
@@ -55,8 +57,8 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(DeleteItemOnSheet.this,response,Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),MainScreen.class);
+                        Toast.makeText(DeleteItemOnSheet.this, response, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                         startActivity(intent);
                     }
                 },
@@ -71,9 +73,9 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
                 Map<String, String> params = new HashMap<>();
 
                 //here we pass params
-                params.put("action","deleteStudent");
-                params.put("studentNumber",studentNumber);
-                params.put("sheetName",sheetName);
+                params.put("action", "deleteStudent");
+                params.put("studentNumber", studentNumber);
+                params.put("sheetName", sheetName);
 
                 return params;
             }
@@ -94,7 +96,7 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
-        if (v == deleteStudentButton){
+        if (v == deleteStudentButton) {
             deleteStudentFromSheet();
         }
     }
