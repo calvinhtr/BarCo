@@ -4,8 +4,8 @@ import android.app.Application;
 public class GlobalVariables extends Application {
     private String sheetName = "Event 1";
     String spreadSheetNames[]=new String[100];
-    public String getSheetNameGlobal(){
-        return sheetName;
+    public String getSheetNameGlobal(int id){
+        return spreadSheetNames[id];
     }
     static int counter=0;
     public void setSheetName(String newSheetName){

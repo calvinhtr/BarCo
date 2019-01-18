@@ -8,19 +8,18 @@ import android.view.View;
 import android.widget.Button;
 
 public class  EditSheet extends AppCompatActivity implements View.OnClickListener {
-    //Get sheet name global
-    String sheetName=((GlobalVariables) this.getApplication()).getSheetNameGlobal();
     Button addStudentsButton;
     Button deleteStudentsButton;
     Button displayStudentsButton;
     Button checkStudentsButton;
     Button backEditSpreadsheetButton;
-
+    String spreadSheetName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_sheet);
-
+        Intent intent=getIntent();
+        spreadSheetName=intent.getStringExtra("spreadSheetName");
         addStudentsButton = (Button)findViewById(R.id.addStudentsButton);
         addStudentsButton.setOnClickListener(this);
 
@@ -41,17 +40,25 @@ public class  EditSheet extends AppCompatActivity implements View.OnClickListene
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
         if (v == addStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            startIntent.putExtra("spreadSheetName", (spreadSheetName));
+            startActivity(startIntent);
             ((GlobalVariables) this.getApplication()).setBarcodeNext("addStudents");
             startActivity(startIntent);
         }
         else if (v == checkStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            Intent intent=getIntent();
+            spreadSheetName=intent.getStringExtra("spreadSheetName");
             ((GlobalVariables) this.getApplication()).setBarcodeNext("checkStudents");
             startActivity(startIntent);
         }
         else if (v== deleteStudentsButton){
             Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+            Intent intent=getIntent();
+            spreadSheetName=intent.getStringExtra("spreadSheetName");
             ((GlobalVariables) this.getApplication()).setBarcodeNext("deleteStudents");
+            startIntent.putExtra("spreadsheetName", (spreadSheetName));
+            startActivity(startIntent);
             startActivity(startIntent);
         }
         else if (v== displayStudentsButton){

@@ -42,6 +42,6 @@ public class MainScreen extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
-        String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();
+
     }
 }
