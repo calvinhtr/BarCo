@@ -43,7 +43,8 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
         final ProgressDialog loading = ProgressDialog.show(this, "Adding student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         // Gets the sheet name
-        final String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();
+        Intent intent=getIntent();
+        final String sheetName =intent.getStringExtra("spreadSheetName");
 
         // Has URL of web app that has access to the Google Sheets
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbz23ZasmP5RpboMtGCrm5fG47BbXvd_8Laki8O0fOn8iF7WIN0/exec",

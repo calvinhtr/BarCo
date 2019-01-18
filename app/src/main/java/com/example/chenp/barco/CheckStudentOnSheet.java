@@ -42,8 +42,9 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
     private void addStudentToSheet(){
         final ProgressDialog loading = ProgressDialog.show(this, "Checking student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
+        Intent secondIntent=getIntent();
         // Gets the sheet name
-        final String sheetName = ((GlobalVariables) this.getApplication()).getSheetNameGlobal();
+        final String sheetName = secondIntent.getStringExtra("spreadSheetName");
 
         // Has URL of web app that has access to the Google Sheets
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbz23ZasmP5RpboMtGCrm5fG47BbXvd_8Laki8O0fOn8iF7WIN0/exec",

@@ -9,11 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
+
 import static com.example.chenp.barco.GlobalVariables.counter;
 
 public class ExistingSheets extends AppCompatActivity {
+    //File file = new File(this.getFilesDir(), "jeff");
     int numberOfSheets = ((GlobalVariables) this.getApplication()).counter;
-
+    String spreadsheetName;
+    String spreadsheetId;
+    int spreadsheetIdInt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,28 +29,28 @@ public class ExistingSheets extends AppCompatActivity {
                 Intent startIntent = new Intent(getApplicationContext(), MainScreen.class);
                 startActivity(startIntent);
             }});
-        String[] array = new String[counter];
+        final String[] array = new String[counter];
 
         for (int i = 0; i < array.length; i++) {
             array[i] = ((GlobalVariables) this.getApplication()).spreadSheetNames[i];
         }
         for (int i = 0; i < counter; i++) {
             //Create constraint layout object
-            System.out.println(array[i]);
             ConstraintLayout myContainer = findViewById(R.id.constraintLayout);
             //Create a constraint layout parameters object
             Button btn = new Button(this);
             btn.setId(i);
+            btn.findViewById(i);
             btn.setText(array[i]);
-            //sheetName is updated with the array sheet name
-            ((GlobalVariables) this.getApplication()).setSheetName(array[i]);
             btn.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View view) {
                     Intent startIntent = new Intent(getApplicationContext(), EditSheet.class);
+                   startIntent.putExtra("spreadSheetName", ((GlobalVariables)ExistingSheets.this.getApplication()).getSheetNameGlobal(view.getId()));
                     startActivity(startIntent);
                 }
             });
-            myContainer.addView(btn);
+                myContainer.addView(btn);
                ConstraintSet constraintSet= new ConstraintSet();
                constraintSet.clone(myContainer);
             constraintSet.connect(btn.getId(),constraintSet.TOP,myContainer.getId(),constraintSet.TOP,i * 100  + 8);
