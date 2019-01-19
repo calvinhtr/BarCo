@@ -55,8 +55,8 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
                     public void onResponse(String response) {
 
                         loading.dismiss();
-                        Toast.makeText(CheckStudentOnSheet.this, response, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        Toast.makeText(CheckStudentOnSheet.this,response,Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),ExistingSheets.class);
                         startActivity(intent);
                     }
                 },
