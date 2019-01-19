@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class EditSheet extends AppCompatActivity implements View.OnClickListener {
+    //Create buttonn objects
     Button addStudentsButton;
     Button deleteStudentsButton;
     Button displayStudentsButton;
@@ -19,9 +20,12 @@ public class EditSheet extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_sheet);
+        //Set the action bar of the activity sheet
         getSupportActionBar().setTitle("Edit Sheet");
+        //receive the spreadsheet name through with getIntent().getStringExtra()
         Intent intent = getIntent();
         spreadSheetName = intent.getStringExtra("spreadSheetName");
+        //set onClickListeners for buttons
         addStudentsButton = (Button) findViewById(R.id.addStudentsButton);
         addStudentsButton.setOnClickListener(this);
 

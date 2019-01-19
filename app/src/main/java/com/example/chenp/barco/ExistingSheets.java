@@ -39,7 +39,12 @@ public class ExistingSheets extends AppCompatActivity {
             //set the button id to i
             btn.setId(i);
             btn.findViewById(i);
+            //sets the button text to value of array at index i
             btn.setText(array[i]);
+            //Styling the button
+            btn.setBackgroundColor(getResources().getColor(R.color.nicePurple));
+            btn.setTextColor(getResources().getColor(R.color.white));
+            //This onClickListener will pass the spreadSheetName through an intent to the EditSheet class
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -48,7 +53,9 @@ public class ExistingSheets extends AppCompatActivity {
                     startActivity(startIntent);
                 }
             });
+            //adds the button to the constraint layout
             myContainer.addView(btn);
+            //set constraints for the button
             ConstraintSet constraintSet = new ConstraintSet();
             constraintSet.clone(myContainer);
             constraintSet.connect(btn.getId(), constraintSet.TOP, myContainer.getId(), constraintSet.TOP, i * 100 + 8);
@@ -57,8 +64,9 @@ public class ExistingSheets extends AppCompatActivity {
             constraintSet.connect(btn.getId(), constraintSet.BOTTOM, myContainer.getId(), constraintSet.BOTTOM, (counter - i - 1) * 100
                     + 16);
             constraintSet.applyTo(myContainer);
+            //redraw the constraintLayout
             findViewById(R.id.constraintLayout).invalidate();
-            //dynamically create a new button
+
 
 
         }

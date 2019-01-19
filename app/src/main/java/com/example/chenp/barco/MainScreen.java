@@ -12,8 +12,9 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-
+        //Create existingSheetButton object
         Button existingSheetButton = (Button) findViewById(R.id.existingSheetButton);
+        //onClickListener that starts the ExistingSheets activity
         existingSheetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -21,7 +22,9 @@ public class MainScreen extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+        //Create creatNewButton object
         Button createNewButton = (Button) findViewById(R.id.createNewButton);
+        //onClickListener that starts the CreateNew activity
         createNewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
