@@ -57,7 +57,7 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
                     public void onResponse(String response) {
                         loading.dismiss();
                         Toast.makeText(DeleteItemOnSheet.this,response,Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),ExistingSheets.class);
+                        Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
                     }
                 },
