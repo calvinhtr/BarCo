@@ -88,13 +88,7 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
         if (v == createSheetButton) {
             createSheetOnSpreadsheet();
-            //spreadSheet  names array
-            ((GlobalVariables) this.getApplication()).inputInSpreadSheet(editText.getText().toString());
-            // addToSpreadsheets
-            Intent i = new Intent(getApplicationContext(), ExistingSheets.class);
-            ;
-            //start the EditSheet Intent
-            startActivity(i);
+
         } else if (v == backCreateNewButton) {
             Intent startIntent = new Intent(getApplicationContext(), MainScreen.class);
             startActivity(startIntent);
