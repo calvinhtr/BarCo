@@ -55,7 +55,6 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         loading.dismiss();
                         Toast.makeText(DeleteItemOnSheet.this,response,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),ExistingSheets.class);

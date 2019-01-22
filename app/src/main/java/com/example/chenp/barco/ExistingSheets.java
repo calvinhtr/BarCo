@@ -1,22 +1,40 @@
 package com.example.chenp.barco;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import static com.example.chenp.barco.GlobalVariables.counter;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExistingSheets extends AppCompatActivity {
-    // find a way to get request 
+    private String[] sheetNames;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Retrieve the sheet name array from the main screen activity
+        Bundle b = this.getIntent().getExtras();
+        sheetNames = b.getStringArray("sheetNameArray");
+        int counter = sheetNames.length;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_existing_sheets);
-        //
+        // Changes the title of the activity
         getSupportActionBar().setTitle("Existing Sheets");
         //Back button that returns back to the main screen
         Button back = (Button) findViewById(R.id.backExistingSheetsButton);
@@ -30,7 +48,7 @@ public class ExistingSheets extends AppCompatActivity {
         final String[] array = new String[counter];
         //For loop that saves the recorded spreadsheet names into the array
         for (int i = 0; i < array.length; i++) {
-            array[i] = ((GlobalVariables) this.getApplication()).spreadSheetNames[i];
+            array[i] = sheetNames[i];
         }
         for (int i = 0; i < counter; i++) {
             //Create constraint layout object
@@ -50,7 +68,7 @@ public class ExistingSheets extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent startIntent = new Intent(getApplicationContext(), EditSheet.class);
-                    startIntent.putExtra("spreadSheetName", ((GlobalVariables) ExistingSheets.this.getApplication()).getSheetNameGlobal(view.getId()));
+                    startIntent.putExtra("spreadSheetName", sheetNames[view.getId()]);
                     startActivity(startIntent);
                 }
             });
@@ -67,9 +85,6 @@ public class ExistingSheets extends AppCompatActivity {
             constraintSet.applyTo(myContainer);
             //redraw the constraintLayout
             findViewById(R.id.constraintLayout).invalidate();
-
-
-
         }
     }
 }

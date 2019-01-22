@@ -32,7 +32,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
         //Action bar title
         getSupportActionBar().setTitle("Add Item to Sheet");
         Intent intent = getIntent();
-        //String that will receive the intent of the studentnumber
+        //String that will receive the intent of the student number
         String stuNum = intent.getExtras().getString("password");
         setContentView(R.layout.activity_add_item_to_sheet);
 
