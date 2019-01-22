@@ -2,14 +2,13 @@ package com.example.chenp.barco;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class EditSheet extends AppCompatActivity implements View.OnClickListener {
-    //Create buttonn objects
+    //Create button objects
     Button addStudentsButton;
     Button deleteStudentsButton;
     Button displayStudentsButton;

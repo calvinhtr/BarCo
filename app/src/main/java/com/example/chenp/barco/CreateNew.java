@@ -49,10 +49,12 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        // Dismisses the dialog box
                         loading.dismiss();
+                        // Creates a small pop-up outputting the response received
                         Toast.makeText(CreateNew.this, response, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), EditSheet.class);
+                        // Go to the MainScreen activity
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                         startActivity(intent);
                     }
                 },

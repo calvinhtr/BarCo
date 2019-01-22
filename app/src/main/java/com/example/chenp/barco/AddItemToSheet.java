@@ -57,8 +57,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
                         loading.dismiss();
                         Toast.makeText(AddItemToSheet.this,response,Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),ExistingSheets.class);
-
+                        Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
                     }
                 },
