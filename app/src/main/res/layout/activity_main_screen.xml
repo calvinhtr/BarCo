@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/holo_blue_light"
     tools:context=".MainScreen">
 
     <Button
         android:id="@+id/existingSheetButton"
         android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="299dp"
         android:text="@string/existing_spreadsheets"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:backgroundTint="@color/holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-       />
 
     <Button
         android:id="@+id/createNewButton"
@@ -28,16 +25,16 @@
         android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="4dp"
         android:text="@string/create_new"
         android:textColor="@color/white"
-        android:textSize="25dp"
-        app:backgroundTint="@color/win8_purple"
+        android:textSize="25sp"
+        app:backgroundTint="@color/nicePurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/existingSheetButton" />
+        app:layout_constraintTop_toBottomOf="@+id/existingSheetButton"
+        app:layout_constraintVertical_bias="0.619" />
 
 </android.support.constraint.ConstraintLayout>

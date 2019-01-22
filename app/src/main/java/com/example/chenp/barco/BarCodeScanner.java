@@ -15,7 +15,9 @@ import info.androidhive.barcode.BarcodeReader;
 
 public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
     private BarcodeReader barcodeReader;
+    //String to store barcode
     String myBarcode;
+    //String to store spreadsheet name
     String spreadSheetName;
 
     @Override
@@ -25,7 +27,9 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
         //Activity action bar title
         getSupportActionBar().setTitle("Barcode Scanner");
         Intent intent = getIntent();
+        //receive the spreadsheet name intent using key "spreadSheetName"
         spreadSheetName = intent.getStringExtra("spreadSheetName");
+        //set barcodeReader to the BarcodeReader fragment
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_fragment);
 
     }

@@ -30,13 +30,14 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new);
+        //Set actionbar title for the activity
         getSupportActionBar().setTitle("Create New Spreadsheet");
+        //Create button objects and set onclickListeners
         createSheetButton = (Button) findViewById(R.id.createSpreadsheetButton);
         createSheetButton.setOnClickListener(this);
-
         backCreateNewButton = (Button) findViewById(R.id.backCreateNewButton);
         backCreateNewButton.setOnClickListener(this);
-
+        //create editText object
         editText = (EditText) findViewById(R.id.editText);
     }
 
@@ -51,7 +52,7 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
 
                         loading.dismiss();
                         Toast.makeText(CreateNew.this, response, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        Intent intent = new Intent(getApplicationContext(), EditSheet.class);
                         startActivity(intent);
                     }
                 },
@@ -88,7 +89,6 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
         // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
         if (v == createSheetButton) {
             createSheetOnSpreadsheet();
-
         } else if (v == backCreateNewButton) {
             Intent startIntent = new Intent(getApplicationContext(), MainScreen.class);
             startActivity(startIntent);
