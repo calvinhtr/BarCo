@@ -13,7 +13,6 @@ public class EditSheet extends AppCompatActivity implements View.OnClickListener
     Button deleteStudentsButton;
     Button displayStudentsButton;
     Button checkStudentsButton;
-    Button backEditSpreadsheetButton;
     String spreadSheetName;
 
     @Override
@@ -37,39 +36,34 @@ public class EditSheet extends AppCompatActivity implements View.OnClickListener
 
         displayStudentsButton = (Button) findViewById(R.id.displayStudentsButton);
         displayStudentsButton.setOnClickListener(this);
-
-        backEditSpreadsheetButton = (Button) findViewById(R.id.backEditSpreadsheetButton);
-        backEditSpreadsheetButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
         if (v == addStudentsButton) {
             Intent startIntent = new Intent(getApplicationContext(), BarCodeScanner.class);
+            // Adds the name of the spreadsheet clicked to the intent
             startIntent.putExtra("spreadSheetName", (spreadSheetName));
+            // Writes to the global variable that stores the destination after the barcode is scanned
             ((GlobalVariables) this.getApplication()).setBarcodeNext("addStudents");
             startActivity(startIntent);
         }
-        else if (v == checkStudentsButton){
-            Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+        else if (v == checkStudentsButton) {
+            Intent startIntent = new Intent(getApplicationContext(), BarCodeScanner.class);
             startIntent.putExtra("spreadSheetName", (spreadSheetName));
             ((GlobalVariables) this.getApplication()).setBarcodeNext("checkStudents");
             startActivity(startIntent);
         }
-        else if (v== deleteStudentsButton){
-            Intent startIntent = new Intent(getApplicationContext(),BarCodeScanner.class);
+        else if (v == deleteStudentsButton) {
+            Intent startIntent = new Intent(getApplicationContext(), BarCodeScanner.class);
             startIntent.putExtra("spreadSheetName", (spreadSheetName));
             ((GlobalVariables) this.getApplication()).setBarcodeNext("deleteStudents");
             startActivity(startIntent);
         }
-        else if (v== displayStudentsButton){
+        // If the 'displayStudentsButton' is clicked, open the link to the spreadsheet
+        else if (v == displayStudentsButton) {
             Uri uri = Uri.parse("https://docs.google.com/spreadsheets/d/1_2QccSd2XGne3HKNpianwGYZvC6hl9ho4nJhE_kGzp0/edit#gid=0");
-            Intent startIntent = new Intent (Intent.ACTION_VIEW, uri);
-            startActivity(startIntent);
-        }
-        else if (v == backEditSpreadsheetButton){
-            Intent startIntent = new Intent(getApplicationContext(),MainScreen.class);
+            Intent startIntent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(startIntent);
         }
     }

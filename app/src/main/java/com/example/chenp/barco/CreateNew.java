@@ -88,10 +88,12 @@ public class CreateNew extends AppCompatActivity implements View.OnClickListener
     }
 
     public void onClick(View v) {
-        // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
+        // If the 'createSheetButton' is clicked, it will call the addItemToSheet() function.
         if (v == createSheetButton) {
             createSheetOnSpreadsheet();
-        } else if (v == backCreateNewButton) {
+        }
+        // Go back to the main screen if the back button is clicked
+        else if (v == backCreateNewButton) {
             Intent startIntent = new Intent(getApplicationContext(), MainScreen.class);
             startActivity(startIntent);
         }

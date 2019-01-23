@@ -29,24 +29,27 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Action bar title
+        // Action bar title
         getSupportActionBar().setTitle("Add Item to Sheet");
         Intent intent = getIntent();
-        //String that will receive the intent of the student number
+        // String that will receive the intent of the student number
         String stuNum = intent.getExtras().getString("password");
         setContentView(R.layout.activity_add_item_to_sheet);
 
         studentNumberEditText = (EditText) findViewById(R.id.studentNumberAddEditText);
         studentNumberEditText.setText(stuNum);
+
         addStudentButton = (Button) findViewById(R.id.toAddButton);
-        //Add an on click listener to the button
+        // Add an on click listener to the button
         addStudentButton.setOnClickListener(this);
     }
 
+    // Create a function that sends a post request
     private void addStudentToSheet() {
+        // Create a loading dialog box
         final ProgressDialog loading = ProgressDialog.show(this, "Adding student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
-        // Gets the sheet name
+        // Gets the sheet name from previous activity
         Intent intent = getIntent();
         final String sheetName = intent.getStringExtra("spreadSheetName");
 
@@ -55,7 +58,9 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        // Dismiss the loading dialog box
                         loading.dismiss();
+                        // Creates a small pop-up
                         Toast.makeText(AddItemToSheet.this,response,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
@@ -71,7 +76,7 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                //here we pass params
+                //Send parameters to Google Apps Script
                 params.put("action", "addStudent");
                 params.put("studentNumber", studentNumber);
                 params.put("sheetName", sheetName);
@@ -80,13 +85,12 @@ public class AddItemToSheet extends AppCompatActivity implements View.OnClickLis
             }
         };
 
-        // Create the timeout length and retry if this time has passed
         int socketTimeOut = 5000;
-
         RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(retryPolicy);
 
         RequestQueue queue = Volley.newRequestQueue(this);
+        // Add stringRequest to queue
         queue.add(stringRequest);
 
     }
