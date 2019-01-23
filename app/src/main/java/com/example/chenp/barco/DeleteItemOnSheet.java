@@ -30,28 +30,24 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        // Sets the name of the action bar title
         getSupportActionBar().setTitle("Delete Item on Sheet");
-        // String that will receive the intent of the student number
         String stuNum = intent.getExtras().getString("password");
+
 
         setContentView(R.layout.activity_delete_item_on_sheet);
 
         studentNumberEditText = (EditText) findViewById(R.id.studentNumberDeleteEditText);
         studentNumberEditText.setText(stuNum);
-
         deleteStudentButton = (Button) findViewById(R.id.toDeleteButton);
         //Add an on click listener to the button
         deleteStudentButton.setOnClickListener(this);
     }
 
     private void deleteStudentFromSheet() {
-        // Creates a loading dialog box
         final ProgressDialog loading = ProgressDialog.show(this, "Deleting student", "Please wait");
-        // Retrieves student number from the edit text
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         Intent secondIntent = getIntent();
-        // Gets the sheet name from previous activity
+        // Gets the sheet name
         final String sheetName = secondIntent.getStringExtra("spreadSheetName");
 
         // Has URL of web app that has access to the Google Sheets
@@ -59,9 +55,7 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Dismiss the loading dialog box
                         loading.dismiss();
-                        // Create a small pop-up with the response received
                         Toast.makeText(DeleteItemOnSheet.this,response,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),MainScreen.class);
                         startActivity(intent);
@@ -77,7 +71,7 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // Sends parameters to Google Apps Script
+                //here we pass params
                 params.put("action", "deleteStudent");
                 params.put("studentNumber", studentNumber);
                 params.put("sheetName", sheetName);
@@ -100,7 +94,7 @@ public class DeleteItemOnSheet extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        // If the 'deleteStudentFromSheet' is clicked, it will call the addItemToSheet() function.
+        // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
         if (v == deleteStudentButton) {
             deleteStudentFromSheet();
         }
