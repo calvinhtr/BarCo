@@ -24,7 +24,7 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
 
     // Create Java variables to store the XML objects.
     EditText studentNumberEditText;
-    Button addStudentButton;
+    Button checkStudentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +36,12 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
 
         studentNumberEditText = (EditText) findViewById(R.id.studentNumberToCheckEditText);
         studentNumberEditText.setText(stuNum);
-        addStudentButton = (Button) findViewById(R.id.toCheckButton);
+        checkStudentButton = (Button) findViewById(R.id.toCheckButton);
         //Add an on click listener to the button
-        addStudentButton.setOnClickListener(this);
+        checkStudentButton.setOnClickListener(this);
     }
 
-    private void addStudentToSheet() {
+    private void checkStudentOnSheet() {
         final ProgressDialog loading = ProgressDialog.show(this, "Checking student", "Please wait");
         final String studentNumber = studentNumberEditText.getText().toString().trim();
         Intent secondIntent = getIntent();
@@ -70,7 +70,7 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                //here we pass params
+                // Sends parameters to Google Apps Script
                 params.put("action", "checkStudent");
                 params.put("studentNumber", studentNumber);
                 params.put("sheetName", sheetName);
@@ -93,9 +93,9 @@ public class CheckStudentOnSheet extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        // If the 'addItemButton' is clicked, it will call the addItemToSheet() function.
-        if (v == addStudentButton) {
-            addStudentToSheet();
+        // If the 'checkStudentButton' is clicked, it will call the addItemToSheet() function.
+        if (v == checkStudentButton) {
+            checkStudentOnSheet();
         }
     }
 }
