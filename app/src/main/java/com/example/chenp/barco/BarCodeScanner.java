@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.barcode.Barcode;
@@ -30,6 +31,7 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
         spreadSheetName = intent.getStringExtra("spreadSheetName");
         //set barcodeReader to the BarcodeReader fragment
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_fragment);
+
     }
 
 
@@ -39,7 +41,6 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
         myBarcode = barcode.rawValue.substring(1, barcode.rawValue.length() - 1);
         //if Barcode value is not 0 open the new activity with scanned barcode value
         if (myBarcode != null) {
-            // Retrieve the destination after scanning barcode
             final String destination = ((GlobalVariables) this.getApplication()).getBarcodeNext();
             Intent startIntent;
             if (destination == "addStudents") {
@@ -79,7 +80,6 @@ public class BarCodeScanner extends AppCompatActivity implements BarcodeReader.B
 
     @Override
     public void onCameraPermissionDenied() {
-        // If unable to get permission from camera, output a small pop-up
         Toast.makeText(getApplicationContext(), "Camera permission denied!", Toast.LENGTH_LONG).show();
     }
 }

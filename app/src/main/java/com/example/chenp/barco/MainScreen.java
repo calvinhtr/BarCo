@@ -23,8 +23,6 @@ public class MainScreen extends AppCompatActivity {
     public static String[] sheetNames;
     // Function to get the sheet names from the Google Apps Script
     private void retrieveSheets() {
-
-        // Create a loading dialog box
         final ProgressDialog loading = ProgressDialog.show(this, "Retrieving sheets", "Please wait");
 
         // Has URL of web app that has access to the Google Sheets
@@ -48,7 +46,7 @@ public class MainScreen extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                // Sends parameters to Google Apps Script
+                //here we pass params
                 params.put("action", "getSheets");
 
                 return params;
