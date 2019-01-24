@@ -65,7 +65,7 @@ public class ExistingSheets extends AppCompatActivity {
             constraintSet.connect(btn.getId(), constraintSet.TOP, myContainer.getId(), constraintSet.TOP, i * 100 + 8);
             constraintSet.connect(btn.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 0);
             constraintSet.connect(btn.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 0);
-            constraintSet.connect(btn.getId(), constraintSet.BOTTOM, myContainer.getId(), constraintSet.BOTTOM, (counter - i - 1) * 100
+            constraintSet.connect(btn.getId(), constraintSet.BOTTOM, myContainer.getId(), constraintSet.BOTTOM, (counter - i - 1)*100
                     + 16);
             constraintSet.applyTo(myContainer);
             //redraw the constraintLayout
